@@ -1,3 +1,29 @@
-[gd_scene format=3 uid="uid://cpraqsqmbcgq2"]
+[gd_scene load_steps=5 format=3 uid="uid://cpraqsqmbcgq2"]
+
+[ext_resource type="PackedScene" uid="uid://dc1gxwtvvr2hi" path="res://scene/player.tscn" id="1_1rcjm"]
+
+[sub_resource type="Gradient" id="Gradient_cs13g"]
+colors = PackedColorArray(0.699382, 0, 0, 1, 0.254902, 0, 0, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_5l8dk"]
+noise_type = 2
+frequency = 0.3
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_0qvwa"]
+width = 4096
+height = 4096
+color_ramp = SubResource("Gradient_cs13g")
+noise = SubResource("FastNoiseLite_5l8dk")
 
 [node name="main" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(259, 256)
+texture = SubResource("NoiseTexture2D_0qvwa")
+
+[node name="Player" parent="." instance=ExtResource("1_1rcjm")]
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+limit_smoothed = true
+position_smoothing_enabled = true
+position_smoothing_speed = 2.0

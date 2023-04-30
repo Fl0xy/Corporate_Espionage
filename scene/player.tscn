@@ -1,0 +1,72 @@
+[gd_scene load_steps=14 format=3 uid="uid://dc1gxwtvvr2hi"]
+
+[ext_resource type="Texture2D" uid="uid://3kvcuqrmlxf1" path="res://assets/player/player_body_idle.png" id="1_ci5h0"]
+[ext_resource type="Script" path="res://scene/player.gd" id="1_sls5v"]
+[ext_resource type="Texture2D" uid="uid://gm7g0pws86eg" path="res://assets/player/player_head.png" id="2_7wuc0"]
+[ext_resource type="Texture2D" uid="uid://uifxukam18pb" path="res://assets/player/player_run1.png" id="3_n0ddp"]
+[ext_resource type="Texture2D" uid="uid://b4yciu3k5xg1f" path="res://assets/player/player_run2.png" id="4_bds6n"]
+[ext_resource type="Texture2D" uid="uid://dspq4rr6owe5l" path="res://assets/player/player_run3.png" id="5_h14fs"]
+[ext_resource type="Texture2D" uid="uid://c266x7e37cgv0" path="res://assets/player/player_run4.png" id="6_6m1x8"]
+[ext_resource type="Texture2D" uid="uid://chff5b67bgbr" path="res://assets/player/player_run5.png" id="7_kx76k"]
+[ext_resource type="Texture2D" uid="uid://n2mbypvppv4t" path="res://assets/player/player_run6.png" id="8_6ks32"]
+[ext_resource type="Texture2D" uid="uid://g832q4pr5v7l" path="res://assets/player/player_run7.png" id="9_pb2na"]
+[ext_resource type="Texture2D" uid="uid://c3vuq664xqi66" path="res://assets/player/player_run8.png" id="10_v6qoh"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_86dmg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ci5h0")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_n0ddp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_bds6n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_h14fs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_6m1x8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_kx76k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_6ks32")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_pb2na")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_v6qoh")
+}],
+"loop": true,
+"name": &"running",
+"speed": 10.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wgec8"]
+radius = 5.0
+height = 16.0
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_sls5v")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_86dmg")
+animation = &"idle"
+
+[node name="PlayerHead" type="Sprite2D" parent="."]
+texture = ExtResource("2_7wuc0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_wgec8")
